@@ -18,7 +18,7 @@ router.get('/recipes/:id', async (req, res) => {
 	const recipeId = req.params.id
 	const recipe = await db.get('SELECT * FROM recipes WHERE id = ?', [recipeId])
 	if (!recipe) {
-		return res.status(404).render('recipe')
+		return res.status(404).json({ error: 'Recipe not found' })
 	}
 	res.render('recipe', { recipe })
 })
