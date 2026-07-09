@@ -4,7 +4,7 @@
             <h1>{{recipe.title}}</h1>
             <div class="recipe-actions">
                 <button class="btn btn-primary" onclick="showEditForm()">Edit Recipe</button>
-                <button class="btn btn-secondary" onclick="deleteRecipe({{recipe.id}})">Delete</button>
+                <button id="delete-recipe-btn" class="btn btn-secondary" data-recipe-id="{{recipe.id}}">Delete</button>
                 <a href="/recipes" class="btn btn-secondary">Back to All Recipes</a>
             </div>
         </div>
@@ -105,5 +105,12 @@ async function deleteRecipe(recipeId) {
     }
 
     alert('Failed to delete recipe. Please try again or contact support if the problem persists.');
+}
+
+const deleteRecipeButton = document.getElementById('delete-recipe-btn');
+if (deleteRecipeButton) {
+    deleteRecipeButton.addEventListener('click', () => {
+        deleteRecipe(deleteRecipeButton.dataset.recipeId);
+    });
 }
 </script>

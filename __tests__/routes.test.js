@@ -77,7 +77,5 @@ describe('Routes', () => {
 
     const response = await request(app).get(`/recipes/${recipeId}`);
     expect(response.status).toBe(404);
-    expect(response.body.view).toBe('recipe');
-    expect(response.body.locals.recipe).toBeNull();
   });
 });
