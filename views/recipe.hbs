@@ -1,10 +1,10 @@
 <div class="recipe-container">
-    {{#if hasRecipe}}
+    {{#if recipe}}
         <div class="recipe-header">
             <h1>{{recipe.title}}</h1>
             <div class="recipe-actions">
                 <button class="btn btn-primary" onclick="showEditForm()">Edit Recipe</button>
-                <button id="delete-recipe-btn" class="btn btn-secondary" data-recipe-id="{{recipe.id}}" aria-label="Delete recipe">Delete</button>
+                <button id="delete-recipe-btn" class="btn btn-secondary" data-recipe-id="{{recipe.id}}" aria-label="Delete {{recipe.title}}">Delete</button>
                 <a href="/recipes" class="btn btn-secondary">Back to All Recipes</a>
             </div>
         </div>
@@ -102,15 +102,11 @@ async function deleteRecipe(recipeId) {
 
         if (response.ok) {
             window.location.href = '/recipes';
-            return;
-        }
-
-        if (response.status === 404) {
+        } else if (response.status === 404) {
             alert('Recipe not found. It may have already been deleted.');
-            return;
+        } else {
+            alert('Failed to delete recipe. Please try again or contact support if the problem persists.');
         }
-
-        alert('Failed to delete recipe. Please try again or contact support if the problem persists.');
     } catch (error) {
         alert('A network error occurred while deleting the recipe. Please try again.');
     }

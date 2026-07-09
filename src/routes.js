@@ -18,9 +18,9 @@ router.get('/recipes/:id', async (req, res) => {
 	const recipeId = req.params.id
 	const recipe = await db.get('SELECT * FROM recipes WHERE id = ?', [recipeId])
 	if (!recipe) {
-		return res.status(404).render('recipe', { hasRecipe: false })
+		return res.status(404).render('recipe')
 	}
-	res.render('recipe', { recipe, hasRecipe: true })
+	res.render('recipe', { recipe })
 })
 
 router.post('/recipes', async (req, res) => {
