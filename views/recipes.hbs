@@ -10,7 +10,7 @@
         <form action="/recipes" method="POST">
             <div class="form-group">
                 <label for="title">Recipe Title:</label>
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="title" required pattern=".*\S.*" title="Title is required">
             </div>
             
             <div class="form-group">

@@ -64,4 +64,34 @@ describe('Routes', () => {
     expect(recipe).toBeDefined();
     expect(recipe.title).toBe(newRecipe.title);
   });
+
+  test('POST /recipes should return 400 when title is empty', async () => {
+    const response = await request(app)
+      .post('/recipes')
+      .send({
+        title: '   ',
+        ingredients: 'Ingredients',
+        method: 'Method'
+      });
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBe('Title is required');
+
+    const recipe = await db.get('SELECT * FROM recipes WHERE ingredients = ? AND method = ?', ['Ingredients', 'Method']);
+    expect(recipe).toBeUndefined();
+  });
+
+  test('DELETE /recipes/:id should delete recipe and GET should return 404', async () => {
+    const result = await db.run(
+      'INSERT INTO recipes (title, ingredients, method) VALUES (?, ?, ?)',
+      ['Recipe To Delete', 'Ingredient', 'Method']
+    );
+    const recipeId = result.lastID;
+
+    const deleteResponse = await request(app).delete(`/recipes/${recipeId}`);
+    expect(deleteResponse.status).toBe(204);
+
+    const response = await request(app).get(`/recipes/${recipeId}`);
+    expect(response.status).toBe(404);
+  });
 });
