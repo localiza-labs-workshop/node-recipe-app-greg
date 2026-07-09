@@ -45,6 +45,28 @@ describe('Routes', () => {
     expect(response.body.view).toBe('home');
   });
 
+  test('GET /weather should return mocked weather', async () => {
+    const response = await request(app).get('/weather');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({
+      location: 'Belo Horizonte',
+      temperatureCelsius: 24,
+      condition: 'Sunny'
+    });
+  });
+
+  test('GET /weather should override location from query parameter', async () => {
+    const response = await request(app).get('/weather?location=Sao%20Paulo');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({
+      location: 'Sao Paulo',
+      temperatureCelsius: 24,
+      condition: 'Sunny'
+    });
+  });
+
   test('POST /recipes should create a new recipe', async () => {
     const newRecipe = {
       title: 'New Test Recipe',

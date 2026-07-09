@@ -1,11 +1,14 @@
 const express = require('express')
 const { getDbConnection } = require('./database')
+const weatherController = require('./weather/weather.controller')
 
 const router = express.Router()
 
 router.get('/', (req, res) => {
 	res.render('home', { title: 'Recipe App' })
 })
+
+router.get('/weather', weatherController.getWeather)
 
 router.get('/recipes', async (req, res) => {
 	const db = await getDbConnection()
