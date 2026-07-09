@@ -50,6 +50,6 @@ Everything stays tidy, secure, and ready for the next adventure.
 ```text
 Gee whiz, rolling back that wobbly pagination change!
 
-Gosh, Mickey spotted unexpected jumps between pages for the folks.
+Gosh, Mickey spotted unexpected jumps between pages for the pals.
 This revert restores the smooth flow while we prepare a safer fix. Hot dog!
 ```
