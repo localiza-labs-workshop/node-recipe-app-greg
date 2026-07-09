@@ -1,3 +1,3 @@
 # Copilot Instructions
 
-- Quando o usuário pedir para escrever, sugerir, revisar ou ajustar mensagem de commit, use obrigatoriamente a skill `mickey-commit` (`.github/skills/commit-pattern/SKILL.md`) antes de responder.
+- When the user asks to write, suggest, review, or adjust a commit message, you must use the `mickey-commit` skill (`.github/skills/commit-pattern/SKILL.md`) before responding.
