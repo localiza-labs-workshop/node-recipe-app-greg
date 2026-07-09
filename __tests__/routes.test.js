@@ -57,11 +57,11 @@ describe('Routes', () => {
   });
 
   test('GET /weather should override location from query parameter', async () => {
-    const response = await request(app).get('/weather?location=SaoPaulo');
+    const response = await request(app).get('/weather?location=Sao%20Paulo');
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
-      location: 'SaoPaulo',
+      location: 'Sao Paulo',
       temperatureCelsius: 24,
       condition: 'Sunny'
     });
