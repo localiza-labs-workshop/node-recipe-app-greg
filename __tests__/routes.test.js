@@ -56,6 +56,17 @@ describe('Routes', () => {
     });
   });
 
+  test('GET /weather should override location from query parameter', async () => {
+    const response = await request(app).get('/weather?location=SaoPaulo');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({
+      location: 'SaoPaulo',
+      temperatureCelsius: 24,
+      condition: 'Sunny'
+    });
+  });
+
   test('POST /recipes should create a new recipe', async () => {
     const newRecipe = {
       title: 'New Test Recipe',
